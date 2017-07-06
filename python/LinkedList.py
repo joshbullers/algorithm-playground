@@ -34,7 +34,7 @@ class LinkedList():
             while current.next is not self.tail:
                 current = current.next
 
-            # by removing references, collection will remove from memory
+            # by removing references, garbage collection will remove from memory
             current.next = None
             self.tail = current
 
@@ -71,6 +71,10 @@ class LinkedList():
             current = current.next
 
         return False
+
+    def clear(self):
+        self.head = None
+        self.tail = None
 
     def print_list(self):
         current_node = self.head
