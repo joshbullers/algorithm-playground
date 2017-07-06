@@ -38,6 +38,40 @@ class LinkedList():
             current.next = None
             self.tail = current
 
+    def delete_value(self, val):
+        previous = None
+        current = self.head
+        val_present = False
+
+        while current is not None:
+            if current.value == val:
+                if previous is not None:
+                    if current == self.tail:
+                        self.tail = previous
+                        previous.next = None
+                    else:
+                        previous.next = current.next
+                else:
+                    self.head = current.next
+
+                val_present = True
+            else:
+                previous = current
+
+            current = current.next
+
+        return val_present
+
+    def contains(self, val):
+        current = self.head
+        while current is not None:
+            if current.value == val:
+                return True
+
+            current = current.next
+
+        return False
+
     def print_list(self):
         current_node = self.head
 
