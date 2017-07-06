@@ -1,5 +1,4 @@
 from Node import Node
-from ctypes import addressof
 
 
 class LinkedList():
@@ -20,13 +19,28 @@ class LinkedList():
         self.tail = new_node
 
     def delete_first(self):
-
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
 
     def delete_last(self):
         if self.head == self.tail:
-            del self.head
-            del self.tail
+            self.head = None
+            self.tail = None
         else:
             current = self.head
             while current.next is not self.tail:
                 current = current.next
+
+            # by removing references, collection will remove from memory
+            current.next = None
+            self.tail = current
+
+    def print_list(self):
+        current_node = self.head
+
+        while current_node is not None:
+            print(current_node.value)
+            current_node = current_node.next
